@@ -1,0 +1,279 @@
+:root{
+    --mainColor: #ff274b;
+    --secondaryColor:#f7bcf7;
+    --lightColor: #ffffff;
+    --color-1:#171a1c;
+    --color-2:#22282a;
+    --padding:8%;
+}
+
+html{
+    font-family: 'Karla', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: var(--lightColor);
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Start Home */
+.home{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-1);
+}
+
+span{
+    color: var(--mainColor);
+}
+
+.home h2{
+    font-size: 5rem;
+    letter-spacing: 0.12rem;
+    cursor: pointer;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.home nav p{
+    position: absolute;
+    top: 60%;
+    left: 54%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+    word-spacing: 8px;
+}
+nav {
+    padding:2.2rem var(--padding) 0 var(--padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul{
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    transform: translate(-50%,-50%);
+    font-size: 2rem;
+    line-height: 50px;
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0.8rem 1.5rem;
+    display: block;
+}
+
+nav ul li a{
+    color:var(--lightColor);
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.4s;
+}
+
+nav ul li a:hover{
+    color: var(--mainColor);
+}
+
+
+
+@media (max-width:767px){
+    .home h2{
+        font-size: 3rem;
+        width: 306px;
+    }
+    nav ul{
+        display: none;
+    }
+    .home nav p{
+        word-spacing: 6px;
+        font-size: 25px;
+        width: 300px;
+        top: 56.9%;
+        left: 59%;
+    }
+
+}
+@media (min-width:736px)and (min-height:414px){
+    .home h2{
+        font-size:4rem;
+    }
+    .home nav p{
+        top: 63%;
+        left: 63%;
+    }
+}
+/* End Home */
+/* Start About Me */
+.aboutMe {
+    background-color: var(--color-2);
+}
+hr{
+    color: var(--color-1);
+}
+
+.aboutMe h1{
+    color: var(--mainColor);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 25px 10px 10px 10px;
+    font-size: 4rem;
+}
+
+.aboutMe p{
+    width: 500px;
+    padding: 15px;
+    margin: 150px 15px 15px 15px;
+    line-height: 45px;
+    word-spacing: 1.5px;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+}
+
+.aboutMe img{
+    width: 400px;
+    margin: 100px 0 0 0;
+}
+
+.aboutMe .mygrid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+
+.aboutMe .skills-header{
+    font-size: 3.8rem;
+    color: var(--mainColor);
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 40px 0;
+}
+
+.aboutMe .skills{
+    display: flex;
+}
+
+.aboutMe .skills .skill{
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    margin: 15px auto;
+}
+
+.aboutMe .skills .skill img{
+    width: 100px;
+    transition-duration: .3s;
+}
+
+.aboutMe .skills .skill h2{
+    position: absolute;
+    color: #9183d2;
+    margin: 30px 0 0 0;
+}
+
+
+@media (max-width:767px){
+    .aboutMe{
+        height: 230vh;
+    }
+    .aboutMe .mygrid{
+        grid-template-columns: 360px;
+    }
+    .aboutMe p{
+        width: 94%;
+        font-size: 20px;
+        word-spacing: 0.5px;
+        line-height: 40px;
+        margin: 10px auto;
+    }
+    .aboutMe img{
+        width: 80%;
+        margin: 10px auto;
+    }
+    .aboutMe .skills {
+        display: block;
+    }
+    .aboutMe .skills .skill{
+        margin: 45px auto;
+    }
+    .aboutMe .skills .skill img:hover{
+        transform: rotate(8deg)
+    }
+    .aboutMe .skills .skill h2{
+        margin: -40px 0 0 0;
+        
+    }
+
+}
+@media (min-width:736px)and (min-height:414px){
+    .aboutMe{
+        height: 355vh;
+    }
+    .aboutMe p{
+        width: 650px;
+    }
+    .aboutMe img{
+        display: flex;
+        margin: 10px 200px;
+    }
+}
+@media (min-width:375px)and (min-height:667px){
+    .aboutMe{
+        height: 250vh;
+    }
+}
+
+/* End About Me */
+/* Start Contact */
+.contact {
+    background-color: var(--color-1);
+    height: 55vh;
+    text-align: center;
+}
+.contact h2{
+    color: var(--mainColor);
+    padding: 50px 0 0 0;
+}
+.contact .account{
+    background-color: var(--color-2);
+    width: 50%;
+    height: 150px;
+    margin: 40px auto;
+    border-radius: 50px;
+}
+.contact .account ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+.contact .account ul li{
+    list-style: none;
+    margin: 50px 15px 0;
+}
+.contact .account ul li a img {
+    width: 80px;
+    padding: -20px;
+}
+@media (max-width:767px){
+    .contact .account{
+        width: 90%;
+    }
+    .contact .account ul li a img {
+        width: 65px;
+    }
+}
+@media (min-width:736px)and (min-height:414px){
+    .contact{
+        height: 85vh;
+    }
+}
+
+/* Start Contact */
