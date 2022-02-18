@@ -50,6 +50,31 @@
             </ul>
         </div>
     </div>
+    <script>
 
+        if (window.innerWidth === 375 && window.innerHeight === 667){
+            document.querySelector('.aboutMe').style.height = '240vh';
+        }
+        else if (window.innerWidth === 360 && window.innerHeight === 760){
+            document.querySelector('.aboutMe').style.height = '210vh';
+        }
+        else if (window.innerWidth === 360 && window.innerHeight === 640){
+            document.querySelector('.aboutMe').style.height = '255vh';
+        }
+        else if (window.innerWidth === 375 && window.innerHeight === 812){
+            document.querySelector('.aboutMe').style.height = '205vh';
+            document.querySelector('.contact').style.height = '40vh';
+        }
+        else if (window.innerWidth === 414 && window.innerHeight === 896){
+            document.querySelector('.aboutMe').style.height = '180vh';
+        }
+        else if (window.innerWidth === 390 && window.innerHeight === 844){
+            document.querySelector('.aboutMe').style.height = '195vh';
+        }
+        else if (window.innerWidth === 428 && window.innerHeight === 926){
+            document.querySelector('.aboutMe').style.height = '180vh';
+            document.querySelector('.contact').style.height = '35vh';
+        }
+    </script>
 </body>
 </html>

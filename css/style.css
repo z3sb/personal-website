@@ -189,8 +189,8 @@ hr{
         grid-template-columns: 360px;
     }
     .aboutMe p{
-        width: 94%;
-        font-size: 20px;
+        width: 95%;
+        font-size: 25px;
         word-spacing: 0.5px;
         line-height: 40px;
         margin: 10px auto;
@@ -214,7 +214,7 @@ hr{
     }
 
 }
-@media (min-width:736px)and (min-height:414px){
+@media (max-width:736px)and (max-height:414px){
     .aboutMe{
         height: 355vh;
     }
@@ -226,9 +226,9 @@ hr{
         margin: 10px 200px;
     }
 }
-@media (min-width:375px)and (min-height:667px){
+@media (max-width:375px)and (max-height:667px){
     .aboutMe{
-        height: 250vh;
+        height: 200vh;
     }
 }
 
@@ -270,7 +270,7 @@ hr{
         width: 65px;
     }
 }
-@media (min-width:736px)and (min-height:414px){
+@media (max-width:736px)and (max-height:414px){
     .contact{
         height: 85vh;
     }
