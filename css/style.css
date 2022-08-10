@@ -580,6 +580,12 @@ h3.my-profession{
   color:var(--text-black-700);
   font-weight:400;
 }
+.contact .accounts .icon{
+  margin-top: 20px;
+}
+.contact .accounts .icon i{
+  font-size: 30px;
+}
 .contact .contact-form{
   flex:0 0 100%;
   max-width:100%;
