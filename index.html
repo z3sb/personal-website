@@ -1,80 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haider Fadel</title>
+    <!-- CSS Files -->
     <link rel="stylesheet" href="css/style.css">
-    <title>Haider XR</title>
-    <meta name="description" content="My Person Webeite.Front End Web Developer and Cyber Security">
-    <meta name="keyword" content="Tahiri, Lahcen, Tahiri lahcen, Barmaja online, java, php, ionic, angular, nodejs, react">
-    <link rel="icon" href="icons/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,400;0,500;0,800;1,700&family=Roboto:wght@700&display=swap" rel="stylesheet"> 
-</head>
-<body>
-    <section class="home" id="home">
-        <nav>
-            <h2>Haider <span>XR</span></h2>
-            <p>Front End Developer</p>
-            <ul>
-                <li><a href="#home">home</a></li>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </section>
-    <div class="aboutMe" id="about">
-        <hr><hr>
-        <h1>About Me</h1>
-        <div class="mygrid">
-            <p>Hello, my name is: Haider Fadel, I am from Iraq, and My Age: 18 years old, I'm a self taught developer and I have the ability to teach myself anything and I'm still studying computer science at the moment</p>
-            <img src="imgs/Hacker-amico.png" alt="">
+    <link rel="stylesheet" href="css/skins/color-1.css" id="color-switcher">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style-switcher.css">
+  </head>
+  <body>
+    <!-- Main Container Start -->
+    <div class="main-container">
+      <!-- Aside Start -->
+      <div class="aside">
+        <div class="logo">
+          <a href="#"><span>H</span>aider</a>
         </div>
-        <h2 class="skills-header">Skills</h2>
-        <div class="skills">
-            <div class="skill"><h2>Html</h2><img src="imgs/file_type_html_icon_130541.png" alt=""></div>
-            <div class="skill"><h2>Css</h2><img src="imgs/file_type_css_icon_130661.png" alt=""></div>
-            <div class="skill"><h2>Javascript</h2><img src="imgs/javascript_icon_130900.png" alt=""></div>
-            <div class="skill"><h2>Python</h2><img src="imgs/python_18894.png" alt=""></div>
+        <div class="nav-toggler">
+          <span></span>
         </div>
+        <ul class="nav">
+          <li><a href="#home" class="active"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="#about"><i class="fa fa-user"></i> About</a></li>
+          <li><a href="#service"><i class="fa fa-list"></i> Services</a></li>
+          <li><a href="#portfolio"><i class="fa fa-briefcase"></i> Portfolio</a></li>
+          <li><a href="#contact"><i class="fa fa-comments"></i> Contact</a></li>
+        </ul>
+      </div>
+    <!-- Aside End -->
+    <!-- Main Content Start -->
+    <div class="main-content">
+      <!-- Home Section Start -->
+      <section class="home section">
+        <div class="container">
+          <div class="row">
+            <div class="home-info padd-15">
+              <h3 class="hello">Hello, my name is <span class="name">Haider Fadel</span></h3>
+              <h3 class="my-profession">I'm a <span class="typing">Web Developer</span></h3>
+              <p>Hello i'm beginner web developer. I'm a self taught developer and I have the ability to teach myself anything and I'm still studying computer science at the moment</p>
+              <a href="#contact" class="btn hire-me">Hire Me</a>
+            </div>
+            <div class="home-image padd-15">
+              <img src="./images/hero.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Home Section End -->
+      <!-- About Section Start -->
+      <section class="about section" id="about">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>About Me</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="about-content padd-15">
+              <div class="row">
+                <div class="about-text padd-15">
+                  <h3>I'm Haider Fadel And <span>Web Developer</span></h3>
+                  <p>Hello I have taught myself the basics of frontend web development and I complete simple projects on the frontend mentor website I will keep going in developing my technical skills every day and I love learning something new every single day</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="personal-info padd-15">
+                  <div class="row">
+                    <div class="info-item padd-15">
+                      <p>Birthday: <span>19 april 2004</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Age: <span>18</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Website: <span>www.haiderfadel.tk</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Email: <span>oslvuao@gmail.com</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Degree: <span>CS</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Phone: <span>+9647727599259</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>City: <span>Baghdad</span></p>
+                    </div>
+                    <div class="info-item padd-15">
+                      <p>Freelnace: <span>Available</span></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="buttons padd-15">
+                      <a href="CV/myCV.pdf" class="btn" download="Haider Fadel CV">Download CV</a>
+                      <a href="#contact" class="btn hire-me">Hire Me</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="skills padd-15">
+                  <div class="row">
+                    <div class="skill-item padd-15">
+                      <h5>HTML</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 95%;"></div>
+                        <div class="skill-percent">95%</div>
+                      </div>
+                    </div>
+                    <div class="skill-item padd-15">
+                      <h5>CSS</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 85%;"></div>
+                        <div class="skill-percent">85%</div>
+                      </div>
+                    </div>
+                    <div class="skill-item padd-15">
+                      <h5>JavaScript</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 75%;"></div>
+                        <div class="skill-percent">75%</div>
+                      </div>
+                    </div>
+                    <div class="skill-item padd-15">
+                      <h5>Python</h5>
+                      <div class="progress">
+                        <div class="progress-in" style="width: 50%;"></div>
+                        <div class="skill-percent">50%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="education padd-15">
+                  <h3 class="title">Education</h3>
+                  <div class="row">
+                    <div class="timeline-box padd-15">
+                      <div class="timeline shadow-dark">
+                        <!-- TimeLine Item -->
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i> 2022 - 2024
+                          </h3>
+                          <h4 class="timeline-title">Student in Computer Science</h4>
+                          <p class="timeline-text">I study computer science at the university of technology computer security department stage two and I am interesting in web development and web security</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="experience padd-15">
+                  <h3 class="title">Experience</h3>
+                  <div class="row">
+                    <div class="timeline-box padd-15">
+                      <div class="timeline shadow-dark">
+                        <!-- TimeLine Item -->
+                        <div class="timeline-item">
+                          <div class="circle-dot"></div>
+                          <h3 class="timeline-date">
+                            <i class="fa fa-calendar"></i> 2020 - 2022
+                          </h3>
+                          <h4 class="timeline-title">Web Design</h4>
+                          <p class="timeline-text">I learned HTML and CSS and completed Templates and now I practice web development in Html and CSS and JavaScript</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- About Section End -->
+      <!-- Services Section Start -->
+      <section class="service section" id="service">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Services</h2>
+            </div>
+          </div>
+            <div class="row">
+              <!-- Services item Start -->
+              <div class="service-item padd-15">
+                <div class="service-item-inner">
+                  <div class="icon">
+                    <i class="fa fa-mobile-alt"></i>
+                  </div>
+                  <h4>Web Design</h4>
+                  <p>I can work with HTML And CSS to Design a responsive website</p>
+                </div>
+              </div>
+              <!-- Services item End -->
+              <!-- Services item Start -->
+              <div class="service-item padd-15">
+                <div class="service-item-inner">
+                  <div class="icon">
+                    <i class="fa fa-laptop-code"></i>
+                  </div>
+                  <h4>Web Application</h4>
+                  <p>Design responsive website application to access the view on all Mobile and Tablet devices.</p>
+                </div>
+              </div>
+              <!-- Services item End -->
+            </div>
+          </div>
+      <!-- Services Section End -->
+      </section>
+      <!-- Portfolio Section Start -->
+      <section class="portfolio section" id="portfolio">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Portfolio</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="portfolio-heading padd-15">
+              <h2>My Last Projects :</h2>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Portfolio Item Start -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="images/portfolio-1.png" alt="portfolio-image">
+                </div>
+              </div>
+            </div>
+            <!-- Portfoilo Item End -->
+            <!-- Portfolio Item Start -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="images/portfolio-2.jpg" alt="portfolio-image">
+                </div>
+              </div>
+            </div>
+            <!-- Portfoilo Item End -->
+            <!-- Portfolio Item Start -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="images/portfolio-3.png" alt="portfolio-image">
+                </div>
+              </div>
+            </div>
+            <!-- Portfoilo Item End -->
+            <!-- Portfolio Item Start -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="images/portfolio-4.jpg" alt="portfolio-image">
+                </div>
+              </div>
+            </div>
+            <!-- Portfoilo Item End -->
+            <!-- Portfolio Item Start -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="images/portfolio-5.png" alt="portfolio-image">
+                </div>
+              </div>
+            </div>
+            <!-- Portfoilo Item End -->
+            <!-- Portfolio Item Start -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-img">
+                  <img src="images/portfolio-6.png" alt="portfolio-image">
+                </div>
+              </div>
+            </div>
+            <!-- Portfoilo Item End -->
+          </div>
+        </div>
+      </section>
+      <!-- Portfolio Section End -->
+      <!-- Contact Section Start -->
+      <section class="contact section" id="contact">
+        <div class="container">
+          <div class="row">
+            <div class="section-title padd-15">
+              <h2>Contact Me</h2>
+            </div>
+          </div>  
+          <h3 class="contact-title padd-15">Have You Any Questions ?</h3>
+          <h4 class="contact-sub-title padd-15">I'M AT YOUR SERVICES</h4>
+          <div class="row">
+            <!-- Contact info item Start -->
+            <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-phone"></i></div>
+              <h4>Call Us On</h4>
+              <p>+9647727599259</p>
+            </div>
+            <!-- Contact info item End -->
+            <!-- Contact info item Start -->
+            <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-map-marker-alt"></i></div>
+              <h4>Office</h4>
+              <p>Baghdad</p>
+            </div>
+            <!-- Contact info item End -->
+            <!-- Contact info item Start -->
+            <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-envelope"></i></div>
+              <h4>Email</h4>
+              <p>oslvuao@gmail.com</p>
+            </div>
+            <!-- Contact info item End -->
+            <!-- Contact info item Start -->
+            <div class="contact-info-item padd-15">
+              <div class="icon"><i class="fa fa-globe-europe"></i></div>
+              <h4>Website</h4>
+              <p>www.haiderfadel.tk</p>
+            </div>
+            <!-- Contact info item End -->
+          </div>
+          <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
+          <h4 class="contact-sub-title padd-15">I'M VERY RESPOSIVE TO MESSAGES</h4>
+          <!-- Contact Form -->
+          <div class="row">
+            <div class="contact-form padd-15">
+              <div class="row">
+                <div class="form-item col-6 padd-15">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name">
+                  </div>
+                </div>
+                <div class="form-item col-6 padd-15">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-item col-12 padd-15">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Subject">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-item col-12 padd-15">
+                  <div class="form-group">
+                    <textarea class="form-control" placeholder="Message"></textarea>
+                  </div>
+                </div>
+              </div><div class="row">
+                <div class="form-item col-12 padd-15">
+                  <button type="submit" class="btn">Send Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Contact Section End -->
     </div>
-    <div class="contact" id="contact">
-        <h2>You Can Find Me On:</h2>
-        <div class="account">
-            <ul>
-                <li><a href="https://github.com/z3sb" target="_blank" class="github"><img src="imgs/github-logo_icon-icons.com_73546.png" alt=""></a></li>
-                <li><a href="https://www.instagram.com/z3.sb/" target="_blank" class="insta"><img src="imgs/instagram.png" alt=""></a></li>
-                <li><a href="mailto:oslvuao@gmail.com" target="_blank" class="email"><img src="imgs/email.png" alt=""><path d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z"></path></a></li>
-            </ul>
-        </div>
+    <!-- Main Content End -->
+  </div>
+    <!-- Main Container End -->
+    <!-- Start Style Switcher -->
+    <div class="style-switcher">
+      <div class="style-switcher-toggler s-icon">
+        <i class="fas fa-cog fa-spin"></i>
+      </div>
+      <div class="day-night s-icon">
+        <i class="fas"></i>
+      </div>
+      <h4>Theme Colors</h4>
+      <div class="colors">
+        <span class="color-1"></span>
+        <span class="color-2"></span>
+        <span class="color-3"></span>
+        <span class="color-4"></span>
+        <span class="color-5"></span>
+      </div>
     </div>
-    <script>
-
-        if (window.innerWidth === 375 && window.innerHeight === 667){
-            document.querySelector('.aboutMe').style.height = '240vh';
-        }
-        else if (window.innerWidth === 360 && window.innerHeight === 760){
-            document.querySelector('.aboutMe').style.height = '210vh';
-        }
-        else if (window.innerWidth === 360 && window.innerHeight === 640){
-            document.querySelector('.aboutMe').style.height = '255vh';
-        }
-        else if (window.innerWidth === 375 && window.innerHeight === 812){
-            document.querySelector('.aboutMe').style.height = '205vh';
-            document.querySelector('.contact').style.height = '40vh';
-        }
-        else if (window.innerWidth === 414 && window.innerHeight === 896){
-            document.querySelector('.aboutMe').style.height = '180vh';
-        }
-        else if (window.innerWidth === 390 && window.innerHeight === 844){
-            document.querySelector('.aboutMe').style.height = '195vh';
-        }
-        else if (window.innerWidth === 428 && window.innerHeight === 926){
-            document.querySelector('.aboutMe').style.height = '180vh';
-            document.querySelector('.contact').style.height = '35vh';
-        }
-    </script>
-</body>
+    <!-- Start Style Switcher -->
+    <!-- JS Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>
+    <script src="js/main.js"></script>
+    <script src="js/style-switcher.js"></script>
+  </body>
 </html>
