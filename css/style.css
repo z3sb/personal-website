@@ -505,6 +505,9 @@ h3.my-profession{
   text-align: justify;
   color: var(--text-black-700);
 }
+.about .about-content .timeline .timeline-text a{
+  color: var(--skin-color);
+}
 /* End About */
 /* Start Services */
 .service{

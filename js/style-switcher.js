@@ -1,7 +1,6 @@
-window.addEventListener('load', () => {
-  document.body.classList.add(localStorage.getItem('color'));
-  document.body.classList.add(localStorage.getItem('theme'));
-});
+document.body.classList.add(localStorage.getItem('color') || 'color-1');
+document.body.classList.add(localStorage.getItem('theme') || 'light');
+
 const styleSwitcherToggler = document.querySelector('.style-switcher-toggler');
 const switcher = document.querySelector('.style-switcher');
 // Open And Close Style Switcher
