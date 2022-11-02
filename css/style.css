@@ -371,8 +371,8 @@ h3.my-profession{
   margin-top: 40px;
 }
 .about .about-content .personal-info .info-item{
-  flex: 0 0 50%;
-  max-width: 50%;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 .about .about-content .personal-info .info-item p{
   font-weight: 600;
