@@ -408,6 +408,9 @@ h3.my-profession{
   font-size: 40px;
   color: var(--skin-color);
 }
+.about .about-content .skills .skill-item span i{
+  font-size: 30px;
+}
 .about .about-content .skills .skill-item h4{
   line-height: 40px;
   font-weight: 600;
