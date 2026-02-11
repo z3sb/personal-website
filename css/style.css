@@ -130,6 +130,7 @@ a:hover {
 .section {
   padding: var(--space-3xl) 0;
   position: relative;
+  overflow: hidden;
 }
 
 .section-alt {
@@ -670,6 +671,7 @@ a:hover {
   background: var(--color-navy-light);
   border-top: 1px solid rgba(201, 168, 76, 0.1);
   position: relative;
+  overflow: hidden;
 }
 
 .site-footer .container {
