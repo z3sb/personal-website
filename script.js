@@ -3,23 +3,17 @@
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   // ========================================
-  // Three.js Interactive Particle Sphere
+  // Canvas 2D Interactive Particle Sphere
   // ========================================
   function initHeroCanvas() {
     if (!motionOk) return;
-    if (typeof THREE === 'undefined') return;
 
     const canvas = document.getElementById('hero-canvas');
     const hero = document.getElementById('hero');
     if (!canvas || !hero) return;
 
-    let renderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
-    } catch (e) {
-      return;
-    }
-    if (!renderer.getContext()) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
     hero.classList.add('webgl-active');
 
@@ -28,17 +22,23 @@
     const CONNECTION_CAP = isMobile ? 100 : 300;
     const SPHERE_RADIUS = isMobile ? 1.6 : 2.0;
     const CONNECTION_DIST = 0.6;
+    const FOV = isMobile ? 6 : 5.5;
+    const DPR = Math.min(window.devicePixelRatio, 2);
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(hero.clientWidth, hero.clientHeight, false);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(65, hero.clientWidth / hero.clientHeight, 0.1, 100);
-    camera.position.z = isMobile ? 6 : 5.5;
+    // -- Sizing --
+    function resize() {
+      const w = hero.clientWidth;
+      const h = hero.clientHeight;
+      canvas.width = w * DPR;
+      canvas.height = h * DPR;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+    }
+    resize();
 
     // -- Particle positions via Fibonacci spiral --
     const positions = new Float32Array(PARTICLE_COUNT * 3);
-    const offsets = new Float32Array(PARTICLE_COUNT); // twinkle offset
+    const offsets = new Float32Array(PARTICLE_COUNT);
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -51,49 +51,8 @@
       offsets[i] = Math.random() * Math.PI * 2;
     }
 
-    // -- Particles --
-    const particleGeom = new THREE.BufferGeometry();
-    particleGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    particleGeom.setAttribute('aOffset', new THREE.BufferAttribute(offsets, 1));
-
-    const particleMat = new THREE.ShaderMaterial({
-      uniforms: {
-        uTime: { value: 0 },
-        uColor: { value: new THREE.Color('#c9a84c') },
-        uPixelRatio: { value: renderer.getPixelRatio() }
-      },
-      vertexShader: `
-        attribute float aOffset;
-        uniform float uTime;
-        uniform float uPixelRatio;
-        varying float vAlpha;
-        void main() {
-          vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
-          gl_PointSize = (3.0 * uPixelRatio) / -mvPos.z;
-          gl_Position = projectionMatrix * mvPos;
-          vAlpha = 0.5 + 0.5 * sin(uTime * 1.5 + aOffset);
-        }
-      `,
-      fragmentShader: `
-        uniform vec3 uColor;
-        varying float vAlpha;
-        void main() {
-          float d = length(gl_PointCoord - 0.5);
-          if (d > 0.5) discard;
-          float strength = 1.0 - smoothstep(0.0, 0.5, d);
-          gl_FragColor = vec4(uColor, strength * vAlpha * 0.8);
-        }
-      `,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
-
-    const particles = new THREE.Points(particleGeom, particleMat);
-    scene.add(particles);
-
-    // -- Connection lines --
-    const linePositions = [];
+    // -- Connection pairs (pre-computed) --
+    const connections = [];
     let lineCount = 0;
     for (let i = 0; i < PARTICLE_COUNT && lineCount < CONNECTION_CAP; i++) {
       const ax = positions[i * 3], ay = positions[i * 3 + 1], az = positions[i * 3 + 2];
@@ -101,65 +60,27 @@
         const bx = positions[j * 3], by = positions[j * 3 + 1], bz = positions[j * 3 + 2];
         const dx = ax - bx, dy = ay - by, dz = az - bz;
         if (dx * dx + dy * dy + dz * dz < CONNECTION_DIST * CONNECTION_DIST) {
-          linePositions.push(ax, ay, az, bx, by, bz);
+          connections.push(i, j);
           lineCount++;
         }
       }
     }
 
-    if (linePositions.length) {
-      const lineGeom = new THREE.BufferGeometry();
-      lineGeom.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-      const lineMat = new THREE.LineBasicMaterial({
-        color: 0xc9a84c,
-        transparent: true,
-        opacity: 0.06,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false
-      });
-      const lines = new THREE.LineSegments(lineGeom, lineMat);
-      scene.add(lines);
-      // Sync rotation with particles
-      particles.add(lines);
-      // Re-parent so lines rotate with the particle group
-      scene.remove(lines);
+    // -- Projected buffer (x, y, depth, scale per particle) --
+    const projected = new Float32Array(PARTICLE_COUNT * 4);
+
+    // -- Color LUT for quantized alpha (avoids per-particle string alloc) --
+    const ALPHA_STEPS = 20;
+    const colorLUT = new Array(ALPHA_STEPS + 1);
+    for (let i = 0; i <= ALPHA_STEPS; i++) {
+      const a = (i / ALPHA_STEPS * 0.8).toFixed(3);
+      colorLUT[i] = 'rgba(201,168,76,' + a + ')';
     }
 
-    // -- Inner glow sphere --
-    const glowGeom = new THREE.SphereGeometry(SPHERE_RADIUS * 0.85, 32, 32);
-    const glowMat = new THREE.ShaderMaterial({
-      uniforms: {
-        uTime: { value: 0 },
-        uColor: { value: new THREE.Color('#c9a84c') }
-      },
-      vertexShader: `
-        varying vec3 vNormal;
-        void main() {
-          vNormal = normalize(normalMatrix * normal);
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform vec3 uColor;
-        uniform float uTime;
-        varying vec3 vNormal;
-        void main() {
-          float intensity = pow(0.6 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
-          float pulse = 0.12 + 0.03 * sin(uTime * 0.8);
-          gl_FragColor = vec4(uColor, intensity * pulse);
-        }
-      `,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      side: THREE.BackSide
-    });
-    const glow = new THREE.Mesh(glowGeom, glowMat);
-    particles.add(glow);
-
-    // -- Mouse tracking (desktop only) --
+    // -- Rotation state --
+    let rotX = 0;
+    let rotY = 0;
     let mouseX = 0, mouseY = 0;
-    let targetRotX = 0, targetRotY = 0;
 
     if (finePointer) {
       hero.addEventListener('mousemove', (e) => {
@@ -172,6 +93,7 @@
     // -- Render loop with IntersectionObserver pause --
     let isVisible = true;
     let animationId = null;
+    const startTime = performance.now();
 
     const heroObserver = new IntersectionObserver(
       ([entry]) => {
@@ -182,41 +104,107 @@
     );
     heroObserver.observe(hero);
 
-    const clock = new THREE.Clock();
-
     function tick() {
       if (!isVisible) { animationId = null; return; }
       animationId = requestAnimationFrame(tick);
 
-      const elapsed = clock.getElapsedTime();
-      particleMat.uniforms.uTime.value = elapsed;
-      glowMat.uniforms.uTime.value = elapsed;
+      const elapsed = (performance.now() - startTime) / 1000;
+      const w = canvas.width;
+      const h = canvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const R = Math.min(w, h) * 0.35;
 
       // Auto-rotation
-      particles.rotation.y += 0.05 / 60;
-      particles.rotation.x = Math.sin(elapsed * 0.15) * 0.05;
+      rotY += 0.05 / 60;
 
-      // Mouse follow
       if (finePointer) {
-        targetRotX = mouseY * 0.3;
-        targetRotY = mouseX * 0.3;
-        particles.rotation.x += (targetRotX - particles.rotation.x) * 0.02;
-        particles.rotation.y += (targetRotY - particles.rotation.y) * 0.02;
+        const targetRotX = mouseY * 0.3;
+        const targetRotY = mouseX * 0.3;
+        rotX += (targetRotX - rotX) * 0.02;
+        rotY += (targetRotY - rotY) * 0.02;
+      } else {
+        rotX = Math.sin(elapsed * 0.15) * 0.05;
       }
 
-      renderer.render(scene, camera);
+      // Pre-compute trig once per frame
+      const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+      const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+
+      // Project all particles
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const ox = positions[i * 3];
+        const oy = positions[i * 3 + 1];
+        const oz = positions[i * 3 + 2];
+
+        // Y rotation
+        const rx = ox * cosY + oz * sinY;
+        const ry = oy;
+        const rz = -ox * sinY + oz * cosY;
+
+        // X rotation
+        const fx = rx;
+        const fy = ry * cosX - rz * sinX;
+        const fz = ry * sinX + rz * cosX;
+
+        const perspective = FOV / (FOV + fz);
+        const idx = i * 4;
+        projected[idx] = cx + fx * R * perspective;
+        projected[idx + 1] = cy - fy * R * perspective;
+        projected[idx + 2] = fz;
+        projected[idx + 3] = perspective;
+      }
+
+      // Clear
+      ctx.clearRect(0, 0, w, h);
+
+      // Layer 1: Inner glow
+      const pulse = 0.12 + 0.03 * Math.sin(elapsed * 0.8);
+      const glowRadius = R * 0.85;
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowRadius);
+      grad.addColorStop(0, 'rgba(201,168,76,0)');
+      grad.addColorStop(0.7, 'rgba(201,168,76,' + (pulse * 0.3).toFixed(3) + ')');
+      grad.addColorStop(1, 'rgba(201,168,76,0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(cx - glowRadius, cy - glowRadius, glowRadius * 2, glowRadius * 2);
+
+      // Layer 2: Connection lines (single draw call)
+      if (connections.length) {
+        ctx.beginPath();
+        for (let c = 0; c < connections.length; c += 2) {
+          const ai = connections[c] * 4;
+          const bi = connections[c + 1] * 4;
+          ctx.moveTo(projected[ai], projected[ai + 1]);
+          ctx.lineTo(projected[bi], projected[bi + 1]);
+        }
+        ctx.strokeStyle = 'rgba(201,168,76,0.06)';
+        ctx.lineWidth = DPR;
+        ctx.stroke();
+      }
+
+      // Layer 3: Particles (additive blending)
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const idx = i * 4;
+        const sx = projected[idx];
+        const sy = projected[idx + 1];
+        const scale = projected[idx + 3];
+        const twinkle = 0.5 + 0.5 * Math.sin(elapsed * 1.5 + offsets[i]);
+        const alphaIdx = Math.round(twinkle * ALPHA_STEPS);
+        const radius = Math.max(1.5 * DPR * scale, 0.5);
+
+        ctx.fillStyle = colorLUT[alphaIdx];
+        ctx.beginPath();
+        ctx.arc(sx, sy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
     }
 
     tick();
 
     // -- Resize handler --
-    window.addEventListener('resize', () => {
-      const w = hero.clientWidth;
-      const h = hero.clientHeight;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    });
+    window.addEventListener('resize', resize);
   }
 
   initHeroCanvas();
