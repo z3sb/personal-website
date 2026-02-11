@@ -476,67 +476,6 @@
   }
 
   // ========================================
-  // Step 3: Animated Stats Counter
-  // ========================================
-  const statNumbers = document.querySelectorAll('.stat-number');
-
-  if (statNumbers.length) {
-    // easeOutExpo easing
-    function easeOutExpo(t) {
-      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-    }
-
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.target, 10);
-      const suffix = el.dataset.suffix || '';
-      const duration = 1500;
-      const startTime = performance.now();
-
-      function update(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeOutExpo(progress);
-        const current = Math.round(easedProgress * target);
-
-        el.textContent = current + suffix;
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        } else {
-          el.textContent = target + suffix;
-        }
-      }
-
-      requestAnimationFrame(update);
-    }
-
-    if (motionOk) {
-      let statsAnimated = false;
-      const statsObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting && !statsAnimated) {
-              statsAnimated = true;
-              statNumbers.forEach(el => animateCounter(el));
-              statsObserver.disconnect();
-            }
-          });
-        },
-        { threshold: 0.3 }
-      );
-      const statsRow = document.querySelector('.stats-row');
-      if (statsRow) statsObserver.observe(statsRow);
-    } else {
-      // Show final values immediately
-      statNumbers.forEach(el => {
-        const target = el.dataset.target;
-        const suffix = el.dataset.suffix || '';
-        el.textContent = target + suffix;
-      });
-    }
-  }
-
-  // ========================================
   // Step 4b: 3D Tilt Cards (fine pointer only)
   // ========================================
   if (motionOk && finePointer) {

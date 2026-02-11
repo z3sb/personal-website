@@ -507,34 +507,6 @@ a:hover {
   aspect-ratio: 1;
 }
 
-/* ---- Stats Counter Row (Step 3) ---- */
-.stats-row {
-  display: flex;
-  gap: var(--space-xl);
-  margin-top: var(--space-2xl);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: var(--space-md);
-  border-bottom: 2px solid var(--color-gold);
-}
-
-.stat-number {
-  font-size: var(--fs-3xl);
-  font-weight: 700;
-  color: var(--color-gold);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: var(--fs-xs);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--color-slate);
-  margin-top: var(--space-xs);
-}
 
 /* ========================================
    Tech Stack
@@ -991,14 +963,6 @@ a:hover {
 
   body.menu-open {
     overflow: hidden;
-  }
-
-  .stats-row {
-    gap: var(--space-md);
-  }
-
-  .stat-number {
-    font-size: var(--fs-2xl);
   }
 
   .footer-links {
