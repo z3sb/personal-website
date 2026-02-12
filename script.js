@@ -234,7 +234,10 @@
   // ========================================
   // Step 1: Hero Text Scramble/Decode Effect
   // ========================================
-  const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
+  const isRTL = document.documentElement.dir === 'rtl';
+  const SCRAMBLE_CHARS = isRTL
+    ? 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي'
+    : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
 
   function scrambleText(element, finalText, duration) {
     return new Promise((resolve) => {
