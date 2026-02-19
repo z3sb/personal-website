@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://haideralzaidi.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://haideralzaidi.com/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://haideralzaidi.com/ar/" />
-    <lastmod>2026-02-12</lastmod>
+    <image:image>
+      <image:loc>https://haideralzaidi.com/images/haider-al-zaidi.webp</image:loc>
+      <image:title>Haider Al-Zaidi</image:title>
+    </image:image>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -13,7 +18,11 @@
     <loc>https://haideralzaidi.com/ar/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://haideralzaidi.com/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://haideralzaidi.com/ar/" />
-    <lastmod>2026-02-12</lastmod>
+    <image:image>
+      <image:loc>https://haideralzaidi.com/images/haider-al-zaidi.webp</image:loc>
+      <image:title>حيدر الزيدي</image:title>
+    </image:image>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
